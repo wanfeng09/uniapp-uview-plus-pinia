@@ -1,0 +1,85 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "订单页"
+			}
+		}, {
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	// 分包配置
+	"subPackages": [{
+		"root": "subPages/login",
+		"pages": [{
+			"path": "index",
+			"style": {
+				"navigationBarTitleText": "登录页"
+			}
+		}]
+	}, {
+		"root": "subPages/home",
+		"pages": [{
+				"path": "index",
+				"style": {
+					"navigationBarTitleText": "首页相关页"
+				}
+			}
+			// ...
+		]
+	}],
+	// 分包预加载
+	"preloadRule": {
+		"pages/index/index": { // 需要再那个页面进行预加载操作
+			"network": "all",
+			"packages": ["subPages/home"] // root
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "HUI",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#4E5969",
+		"selectedColor": "#3c9cff",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [{
+				"pagePath": "pages/index/index",
+				// "iconPath": "/static/tabbar/xxx.png",
+				// "selectedIconPath": "/static/tabbar/xxx.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/order/index",
+				"text": "订单"
+			},
+			{
+				"pagePath": "pages/mine/index",
+				"text": "我的"
+			}
+		]
+	},
+	"easycom": {
+		"autoscan": true,
+		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+		"custom": {
+			"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+			"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
+			"^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
+		}
+	}
+}
