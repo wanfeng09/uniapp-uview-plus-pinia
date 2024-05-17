@@ -57,12 +57,20 @@
             "postcss" : true,
             "minified" : true
         },
-        "usingComponents" : true,
+        // "usingComponents" : true, // 注释掉
+		// 开启分包优化
+		"optimization": {
+			"subPackages": true
+		},
+		 // 小程序按需注入
+		"lazyCodeLoading": "requiredComponents",
         "permission" : {
             "scope.userLocation" : {
                 "desc" : "微信"
             }
-        }
+        },
+		// api权限
+		"requiredPrivateInfos": ["chooseLocation", "getLocation"]
     },
     "mp-alipay" : {
         "usingComponents" : true
